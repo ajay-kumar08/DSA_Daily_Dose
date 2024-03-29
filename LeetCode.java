@@ -1,5 +1,57 @@
 import java.util.*;
 public class LeetCode {
+    //Problem No:1448 (Count Good nodes in Binary tree)
+    class Solution {
+        int count = 0;
+        public int check(TreeNode root, int val){
+            if(root == null)    return count;
+
+            if(val<=root.val){val = root.val;count++;}
+
+            int a = check(root.left, val);
+            int b = check(root.right, val);
+            return (a>b)?a:b;
+        }
+
+        public int goodNodes(TreeNode root) {
+            return check(root, Integer.MIN_VALUE);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    //Problem No: 226(Invert Binary tree)
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null) return root;
+
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+
+
+        root.right = left;
+        root.left = right;
+
+        return root;
+
+    }
+
+
+
+
+
+
+
+
+
         //Problem No: 102 (Level Order Traversal of Binary Trees)
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans=new ArrayList<>();
